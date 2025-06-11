@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌞 Mielno Family Urlaub 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #ffeaa7 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Seitliche Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #2d3436 0%, #636e72 100%);
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+        }
+
+        .sidebar h2 {
+            color: #ffeaa7;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .nav-item {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #74b9ff;
+            transform: translateX(5px);
+        }
+
+        /* Hauptinhalt */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Countdown Sektion */
+        .countdown-container {
+            text-align: center;
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+            border-radius: 20px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .countdown-title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .countdown-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 1em;
+            margin-top: 5px;
+        }
+
+        /* Packliste */
+        .packing-container {
+            max-width: 800px;
+        }
+
+        .add-item-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2d3436;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .packing-list {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .packing-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .packing-item:hover {
+            background: #f8f9fa;
+        }
+
+        .packing-item:last-child {
+            border-bottom: none;
+        }
+
+        .packing-checkbox {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .packing-text {
+            flex-grow: 1;
+            font-size: 16px;
+        }
+
+        .packing-name {
+            background: #74b9ff;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .delete-btn {
+            background: #e17055;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            
+            .countdown-boxes {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .countdown-title {
+                font-size: 2em;
+            }
+        }
+
+        /* Animationen */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Strand Hintergrund Effekt */
+        .beach-bg {
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 48, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Seitliche Navigation -->
+    <nav class="sidebar">
+        <h2>🏖️ Mielno 2025</h2>
+        <a href="#" class="nav-item active" onclick="showSection('countdown')">
+            🕒 Countdown
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('packing')">
+            🎒 Packliste
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('plans')">
+            📋 Urlaubspläne
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('info')">
+            ℹ️ Über Mielno
+        </a>
+        <a href="#" class="nav-item" onclick="showSection('photos')">
+            📸 Fotos
+        </a>
+    </nav>
+
+    <!-- Hauptinhalt -->
+    <main class="main-content beach-bg">
+        <!-- Countdown Sektion -->
+        <section id="countdown" class="content-section active">
+            <div class="countdown-container pulse">
+                <h1 class="countdown-title">🌞 Sommer Urlaub 2025</h1>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">Mielno wartet auf uns!</p>
+                
+                <div class="countdown-boxes" id="countdownDisplay">
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="days">--</span>
+                        <span class="countdown-label">Tage</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="hours">--</span>
+                        <span class="countdown-label">Stunden</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="minutes">--</span>
+                        <span class="countdown-label">Minuten</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="seconds">--</span>
+                        <span class="countdown-label">Sekunden</span>
+                    </div>
+                </div>
+                
+                <p style="font-size: 1.1em;">📅 Reisedatum: 15. Juli 2025</p>
+                <p style="font-size: 1em; opacity: 0.9;">Freut euch auf Sonne, Strand und Familie! 🏖️</p>
+            </div>
+        </section>
+
+        <!-- Packliste Sektion -->
+        <section id="packing" class="content-section">
+            <div class="packing-container">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">🎒 Unsere Packliste</h2>
+                
+                <div class="add-item-form">
+                    <h3 style="margin-bottom: 20px;">Neuen Gegenstand hinzufügen:</h3>
+                    <div class="form-group">
+                        <label for="itemName">Was möchtest du einpacken?</label>
+                        <input type="text" id="itemName" placeholder="z.B. Sonnencreme, Badeanzug...">
+                    </div>
+                    <div class="form-group">
+                        <label for="personName">Dein Name:</label>
+                        <input type="text" id="personName" placeholder="Wer packt das ein?">
+                    </div>
+                    <button class="add-btn" onclick="addPackingItem()">
+                        ➕ Zur Liste hinzufügen
+                    </button>
+                </div>
+
+                <div class="packing-list" id="packingList">
+                    <div class="packing-item">
+                        <input type="checkbox" class="packing-checkbox">
+                        <span class="packing-text">Sonnencreme</span>
+                        <span class="packing-name">Mama</span>
+                    </div>
+                    <div class="packing-item">
+                        <input type="checkbox" class="packing-checkbox">
+                        <span class="packing-text">Schwimmbrille</span>
+                        <span class="packing-name">Papa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Urlaubspläne Sektion -->
+        <section id="plans" class="content-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">📋 Unsere Urlaubspläne</h2>
+            <div style="background: linear-gradient(135deg, #a29bfe, #fd79a8); padding: 30px; border-radius: 20px; color: white;">
+                <h3>🏖️ Geplante Aktivitäten:</h3>
+                <ul style="margin: 20px 0; font-size: 1.1em; line-height: 1.8;">
+                    <li>🌊 Entspannen am Strand</li>
+                    <li>🏊‍♀️ Schwimmen in der Ostsee</li>
+                    <li>🚴‍♂️ Fahrradtouren entlang der Küste</li>
+                    <li>🍽️ Leckere polnische Küche probieren</li>
+                    <li>📸 Gemeinsame Familienfotos machen</li>
+                    <li>🌅 Sonnenaufgang am Meer erleben</li>
+                </ul>
+                <p style="text-align: center; font-style: italic; margin-top: 20px;">
+                    "Die besten Erinnerungen entstehen mit der Familie!" ❤️
+                </p>
+            </div>
+        </section>
+
+        <!-- Info über Mielno -->
+        <section id="info" class="content-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">ℹ️ Über Mielno</h2>
+            <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #74b9ff; margin-bottom: 15px;">🏖️ Warum Mielno?</h3>
+                <p style="line-height: 1.6; margin-bottom: 20px;">
+                    Mielno ist ein wunderschöner Badeort an der polnischen Ostseeküste. Mit seinem breiten Sandstrand, 
+                    dem klaren Wasser und der familienfreundlichen Atmosphäre ist es das perfekte Ziel für unseren Sommerurlaub!
+                </p>
+                
+                <h3 style="color: #74b9ff; margin-bottom: 15px;">🌟 Highlights:</h3>
+                <ul style="line-height: 1.8; margin-bottom: 20px;">
+                    <li>Kilometerlanger Sandstrand</li>
+                    <li>Warmes Ostseewasser im Sommer</li>
+                    <li>Gemütliche Restaurants und Cafés</li>
+                    <li>Fahrradwege entlang der Küste</li>
+                    <li>Entspannte, familienfreundliche Atmosphäre</li>
+                </ul>
+                
+                <div style="text-align: center; background: #f8f9fa; padding: 20px; border-radius: 15px;">
+                    <h4 style="color: #2d3436;">🗓️ Reisezeit: 15. - 22. Juli 2025</h4>
+                    <p style="margin-top: 10px; color: #636e72;">7 Tage voller Sonne, Strand und Familie!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fotos Sektion -->
+        <section id="photos" class="content-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">📸 Unsere Mielno Erinnerungen</h2>
+            <div style="text-align: center; background: white; padding: 40px; border-radius: 20px;">
+                <div style="background: linear-gradient(135deg, #fd79a8, #fdcb6e); padding: 40px; border-radius: 15px; color: white;">
+                    <h3>📷 Foto-Galerie kommt bald!</h3>
+                    <p style="margin-top: 15px; font-size: 1.1em;">
+                        Hier werden bald all unsere schönen Urlaubsfotos zu sehen sein.
+                    </p>
+                    <p style="margin-top: 10px; opacity: 0.9;">
+                        Freut euch auf tolle Erinnerungen! 🌊📸
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation zwischen Sektionen
+        function showSection(sectionId) {
+            // Alle Sektionen ausblenden
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Gewählte Sektion anzeigen
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Navigation aktiv markieren
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('2025-07-15T12:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('countdownDisplay').innerHTML = 
+                    '<h2 style="color: white;">🎉 Der Urlaub hat begonnen! 🎉</h2>';
+            }
+        }
+
+        // Countdown jede Sekunde aktualisieren
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Packliste Funktionen
+        let packingItems = [];
+
+        function addPackingItem() {
+            const itemName = document.getElementById('itemName').value.trim();
+            const personName = document.getElementById('personName').value.trim();
+
+            if (itemName && personName) {
+                const newItem = {
+                    id: Date.now(),
+                    item: itemName,
+                    person: personName,
+                    packed: false
+                };
+
+                packingItems.push(newItem);
+                updatePackingList();
+
+                // Eingabefelder leeren
+                document.getElementById('itemName').value = '';
+                document.getElementById('personName').value = '';
+            } else {
+                alert('Bitte fülle beide Felder aus! 😊');
+            }
+        }
+
+        function updatePackingList() {
+            const listElement = document.getElementById('packingList');
+            
+            if (packingItems.length === 0) {
+                listElement.innerHTML = `
+                    <div class="packing-item">
+                        <span class="packing-text">Noch keine Gegenstände hinzugefügt...</span>
+                    </div>
+                `;
+                return;
+            }
+
+            listElement.innerHTML = packingItems.map(item => `
+                <div class="packing-item">
+                    <input type="checkbox" class="packing-checkbox" 
+                           ${item.packed ? 'checked' : ''} 
+                           onchange="togglePacked(${item.id})">
+                    <span class="packing-text" style="${item.packed ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.item}</span>
+                    <span class="packing-name">${item.person}</span>
+                    <button class="delete-btn" onclick="deleteItem(${item.id})">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        function togglePacked(id) {
+            const item = packingItems.find(item => item.id === id);
+            if (item) {
+                item.packed = !item.packed;
+                updatePackingList();
+            }
+        }
+
+        function deleteItem(id) {
+            packingItems = packingItems.filter(item => item.id !== id);
+            updatePackingList();
+        }
+
+        // Enter-Taste für Packliste
+        document.getElementById('itemName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('personName').focus();
+            }
+        });
+
+        document.getElementById('personName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addPackingItem();
+            }
+        });
+
+        // Starteinträge für Packliste
+        packingItems = [
+            {id: 1, item: 'Sonnencreme', person: 'Mama', packed: false},
+            {id: 2, item: 'Schwimmbrille', person: 'Papa', packed: false}
+        ];
+        updatePackingList();
+    </script>
+</body>
+</html>

@@ -800,6 +800,116 @@
             </div>
         </section>
 
+        <!-- Buchungsdetails Sektion -->
+        <section id="booking" class="content-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">📋 Buchungsdetails</h2>
+            
+            <div class="booking-card">
+                <h3 class="booking-title">🏠 Ferienhaus PPO805</h3>
+                <div class="booking-number">Buchungsnummer: 9682909</div>
+                <p>Gebucht am: 24. April 2025</p>
+            </div>
+
+            <div class="booking-details">
+                <div class="detail-card">
+                    <div class="detail-header">📅 Check-in & Check-out</div>
+                    <div class="detail-item">
+                        <span>Check-in:</span>
+                        <span class="detail-value">Sa. 23. August 2025, ab 16:00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Check-out:</span>
+                        <span class="detail-value">Sa. 30. August 2025, bis 10:00</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Aufenthaltsdauer:</span>
+                        <span class="detail-value">7 Tage</span>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">👥 Reisende</div>
+                    <div class="detail-item">
+                        <span>Erwachsene:</span>
+                        <span class="detail-value">5 Personen</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Kinder (0-11 Jahre):</span>
+                        <span class="detail-value">3 Personen</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Haustiere:</span>
+                        <span class="detail-value">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>Max. Gäste:</span>
+                        <span class="detail-value">14 Personen</span>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">📍 Ferienhaus Adresse</div>
+                    <div style="margin-bottom: 15px;">
+                        <strong>Okrezna 20</strong><br>
+                        76-032 Mielno, Polen
+                    </div>
+                    <button class="address-button" onclick="openMap()">
+                        🗺️ Adresse in Karte anzeigen
+                    </button>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">🔑 Schlüsselübergabe</div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Tomasz Kudelski</strong>
+                        </div>
+                        <div class="contact-item">
+                            📍 Okrezna 18, PL-76-033 Mielno
+                        </div>
+                        <div class="contact-item">
+                            📱 TEL: 604 255 529
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card payment-card">
+                    <div class="detail-header" style="color: white;">💰 Zahlungsinformationen</div>
+                    <div class="payment-amount">1.779,00 €</div>
+                    <div class="payment-status">✅ Vollständig bezahlt</div>
+                    <div style="margin-top: 15px; font-size: 0.9em;">
+                        <div>Erste Rate: 445,00 € ✅</div>
+                        <div>Zweite Rate: 1.334,00 € ✅</div>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">💡 Zusätzliche Kosten vor Ort</div>
+                    <div class="additional-costs">
+                        <div class="cost-item">
+                            <span>Gasheizung:</span>
+                            <span>0,60 € pro m³</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Wasser:</span>
+                            <span>3,30 € pro m³</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Kurtaxe (max.):</span>
+                            <span>0,65 € pro Tag/Person</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Reinigung:</span>
+                            <span>80,00 € pro Aufenthalt</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #856404;">
+                        💡 Diese Kosten werden direkt vor Ort in der Landeswährung bezahlt.
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Wetter Sektion -->
         <section id="weather" class="content-section">
             <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">🌤️ Wetter in Mielno</h2>
@@ -1167,9 +1277,9 @@
             event.target.classList.add('active');
         }
 
-        // Countdown Timer
+        // Countdown Timer - AKTUALISIERT AUF 23. AUGUST
         function updateCountdown() {
-            const targetDate = new Date('2025-08-23T12:00:00').getTime();
+            const targetDate = new Date('2025-08-23T16:00:00').getTime();
             const now = new Date().getTime();
             const difference = targetDate - now;
 
@@ -1191,6 +1301,13 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // Buchungsdetails - Karte öffnen
+        function openMap() {
+            const address = "Okrezna 20, 76-032 Mielno, Polen";
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(googleMapsUrl, '_blank');
+        }
 
         // Packliste Funktionen mit lokaler Speicherung
         let packingItems = [];
